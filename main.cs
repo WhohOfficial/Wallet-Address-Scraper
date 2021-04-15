@@ -33,7 +33,7 @@ namespace Scraper
 
         static Regex reg = new Regex("\"address\":\"([13][a-km-zA-HJ-NP-Z1-9]{25,35})\"");
         static List<string> Parse(string content) {
-            var tcache = reg.Matches(content).Cast<Match>().Select(match => match.Groups[0].Value.Replace("\"", null).Replace("address", null).Replace(":", null)).ToList();
+            var tcache = reg.Matches(content).Cast<Match>().Select(match => match.Groups[0].Value).ToList();
             var clean_lst = new List<string>();
             foreach(var c in tcache) {
                 var match = Cache.FirstOrDefault(stringToCheck => stringToCheck.Contains(c));
